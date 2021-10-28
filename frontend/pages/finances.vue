@@ -1,14 +1,14 @@
 <template>
-  <div class="homepage">
-    <HomePage />
+  <div class="finances">
+    <Soon />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  layout:'main',
+  layout: 'main',
   head: {
-    title: 'HomePage',
+    title: 'Finanças'
   }
 })
 </script>
