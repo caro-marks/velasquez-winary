@@ -1,7 +1,7 @@
 <template>
   <div class="clients">
     <div class="head">
-      <p>Nome</p>
+      <span>Nome</span>
       <span>{{ quantity }}</span>
     </div>
     <ul class="details">
@@ -29,30 +29,21 @@ export default Vue.extend({
 .clients {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% auto;
+  grid-template-rows: 1fr auto;
+  gap: 1rem;
   .head {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    span {
-      font-size: 18px;
-      font-weight: bolder;
-      padding: 0.1rem 0;
-    }
-    p {
-      font-size: 18px;
-      font-weight: bolder;
-      padding: 0.1rem 0;
-    }
+    font-size: 18px;
+    font-weight: bolder;
   }
   .details {
-    margin: 0.1rem;
-    padding: 0.1rem;
     display: grid;
     grid-template-rows: auto;
-    row-gap: 0.1rem;
+    row-gap: 0.2rem;
   }
 }
 </style>

@@ -17,7 +17,7 @@
     height: fit-content;
   }
   .container {
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
   }
   .footer {
     position: absolute;

@@ -1,9 +1,11 @@
 <template>
-  <div class="client">
-    <span>{{ name }}</span>
-    <p>
-      <strong>{{ total }}</strong>
-    </p>
+  <div>
+    <b-button block class="client">
+      <p>{{ name }}</p>
+      <p>
+        {{ total }}
+      </p>
+    </b-button>
   </div>
 </template>
 
@@ -19,16 +21,18 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .client {
+  background: color('dark');
+  border: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
-  span {
-    font-size: 17px;
-  }
-  p {
-    font-size: 16px;
+  font-size: 17px;
+  padding: 0.1rem 0;
+  transition: all 0.5s;
+  &:hover {
+    background: rgba(color('dark', 'darkest'), 0.3);
   }
 }
 </style>
