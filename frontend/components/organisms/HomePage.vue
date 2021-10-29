@@ -10,12 +10,11 @@
 
 <style lang="scss" scoped>
 .homepage {
-  border: 1px solid black;
-  // display: grid;
-  // grid-template-columns: 75% 20%;
-  // grid-template-rows: 500px;
-  // column-gap: 5%;
-  // background: color('light', 'base');
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5%;
+  align-items: center;
+  background: color('light', 'base');
   .main {
     // background: color('dark', 'base');
   }
@@ -25,13 +24,10 @@
     // grid-template-rows: 25% 70%;
     // row-gap: 5%;
     // background: color('dark', 'darkest');
-    .biggest .loyals {
-      // background: color('light', 'lightest');
-    }
-  }
 }
 @include screen('small', 'medium') {
   .homepage {
+    grid-template-columns: 1fr;
   }
 }
 </style>

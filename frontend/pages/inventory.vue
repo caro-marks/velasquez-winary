@@ -8,7 +8,7 @@ import Vue from 'vue'
 export default Vue.extend({
   layout: 'main',
   head: {
-    title: 'Estoque'
+    title: 'Estoque vendido'
   }
 })
 </script>
