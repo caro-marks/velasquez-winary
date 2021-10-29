@@ -1,20 +1,23 @@
 <template>
   <div>
-    <b-button block class="client">
+    <b-button v-b-modal.client block class="client">
       <p>{{ name }}</p>
       <p>
         {{ total }}
       </p>
     </b-button>
+    <b-modal id="client" title="Recomendação"> {{ recommendation }} </b-modal>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+
 export default Vue.extend({
   props: {
     name: { type: String, required: true },
-    total: { type: Number, required: true }
+    total: { type: String, required: true },
+    recommendation: { type: Array, required: true }
   }
 })
 </script>
