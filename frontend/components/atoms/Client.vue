@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-button v-b-modal:[`${name}`] block class="client">
+    <b-button v-b-modal:[`${name}${total}`] block class="client">
       <p>{{ name }}</p>
       <p>
         {{ total }}
       </p>
     </b-button>
-    <b-modal :id="`${name}`" title="Recomendação" ok-only no-stacking>
+    <b-modal :id="`${name}${total}`" title="Recomendação" ok-only no-stacking>
       {{ recommendation }}
     </b-modal>
   </div>
