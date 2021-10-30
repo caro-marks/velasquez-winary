@@ -1,19 +1,19 @@
 <template>
   <div class="homepage">
     <div class="main">
-      <Clients quantity="Total de compras" :details="getData('quality')" />
+      <Clients type-of="Total de compras" :details="getData('quality')" />
     </div>
     <div class="side">
       <div class="biggest">
         <b-button v-b-modal.modal-1 block>Sells</b-button>
         <b-modal id="modal-1" title="Raw Clients">
-          <p v-for="client in clients" :key="client.nome">
-            {{ client.cpf }}
+          <p v-for="sell in sells" :key="sell.cliente">
+            {{ sell.valorTotal }}
           </p>
         </b-modal>
       </div>
       <div class="loyals">
-        <Clients quantity="Quantidade" :details="getData('quantity')" />
+        <Clients type-of="Quantidade" :details="getData('quantity')" />
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@ interface GroupedData {
 
 interface ClientData {
   name: String
-  total: String
+  total: Number
   recommendation: Array<Wine>
 }
 
@@ -93,25 +93,36 @@ export default Vue.extend({
       if (kind === 'quantity') {
         const grouped = [] as ClientData[]
         for (const client in this.groupedClients) {
-          const totalShops = this.groupedClients[client].length
-          const lastShop = this.groupedClients[client][totalShops - 1].itens
           grouped.push({
             name: client,
-            total: `${totalShops}`,
-            recommendation: lastShop.reduce((cheapest, itens) => {
-              return itens.preco < cheapest ? itens.preco : cheapest
-            })
+            total: this.groupedClients[client].length,
+            recommendation: this.getRecommend(this.groupedClients[client])
           })
         }
-        console.log(grouped)
-
-        return grouped
+        return grouped.sort((a, b) => {
+          return b.total - a.total
+        })
       } else {
-        return [
-          { name: 'Amanda', total: 'R$ 5000,00' },
-          { name: 'Marcos', total: 'R$ 4500,00' }
-        ]
+        const grouped = [] as ClientData[]
+        for (const client in this.groupedClients) {
+          grouped.push({
+            name: client,
+            total: this.groupedClients[client].reduce((total, value) => {
+              return total + value.total
+            }, 0),
+            recommendation: this.getRecommend(this.groupedClients[client])
+          })
+        }
+        return grouped.sort((a, b) => {
+          return b.total - a.total
+        })
       }
+    },
+    getRecommend(groupedClient: Array<Shops>) {
+      const lastShop = groupedClient[groupedClient.length - 1].itens
+      return lastShop.reduce((cheap, itens) => {
+        return itens.preco < cheap.preco ? itens : cheap
+      })
     }
   }
 })

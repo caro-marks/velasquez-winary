@@ -2,16 +2,17 @@
   <div class="clients">
     <div class="head">
       <span>Nome</span>
-      <span>{{ quantity }}</span>
+      <span>{{ typeOf }}</span>
     </div>
-    <ul class="details">
+    <b-list-group class="details">
       <Client
         v-for="(detail, id) in details"
         :key="id"
         :name="detail.name"
-        :total="detail.total"
+        :total="defineType(detail.total)"
+        :recommendation="detail.recommendation"
       />
-    </ul>
+    </b-list-group>
   </div>
 </template>
 
@@ -19,8 +20,17 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    quantity: { type: String, required: true },
+    typeOf: { type: String, required: true },
     details: { type: Array, required: true }
+  },
+  methods: {
+    defineType(total) {
+      if (this.typeOf === 'Quantidade') {
+        return `${total} x`
+      } else {
+        return `R$ ${total.toFixed(2)}`
+      }
+    }
   }
 })
 </script>

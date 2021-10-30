@@ -1,12 +1,14 @@
 <template>
   <div>
-    <b-button v-b-modal.client block class="client">
+    <b-button v-b-modal:[`${name}`] block class="client">
       <p>{{ name }}</p>
       <p>
         {{ total }}
       </p>
     </b-button>
-    <b-modal id="client" title="Recomendação"> {{ recommendation }} </b-modal>
+    <b-modal :id="`${name}`" title="Recomendação" ok-only no-stacking>
+      {{ recommendation }}
+    </b-modal>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ export default Vue.extend({
   props: {
     name: { type: String, required: true },
     total: { type: String, required: true },
-    recommendation: { type: Array, required: true }
+    recommendation: { type: Object, required: true }
   }
 })
 </script>
